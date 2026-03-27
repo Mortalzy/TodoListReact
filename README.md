@@ -1,16 +1,118 @@
-# React + Vite
+# TodoList
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Минималистичное React-приложение для управления задачами с возможностью добавления, удаления, поиска и сохранения задач в `localStorage`.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Скриншот
 
-## React Compiler
+![TodoList Screenshot](./src/assets/images/screenshot.jpg)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## О проекте
 
-## Expanding the ESLint configuration
+**TodoList** — это учебный проект на React, в котором реализован удобный и аккуратный интерфейс для работы со списком задач.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Приложение позволяет:
+
+- добавлять новые задачи
+- удалять отдельные задачи
+- удалять все задачи сразу
+- отмечать задачи как выполненные
+- искать задачи по названию
+- автоматически сохранять задачи в `localStorage`
+
+Проект выполнен в минималистичном стиле с приятными hover-эффектами и простым, понятным интерфейсом.
+
+---
+
+## Функциональность
+
+### Добавление задач
+Пользователь может ввести текст новой задачи в поле ввода и добавить её в список.
+
+### Удаление задач
+Каждую задачу можно удалить по отдельности.  
+Также есть возможность удалить сразу весь список задач.
+
+### Изменение статуса задачи
+Каждую задачу можно отметить как выполненную с помощью checkbox.
+
+### Поиск задач
+Реализован поиск задач по названию.  
+Если поле поиска пустое — отображаются все задачи.  
+Если совпадений нет — список просто становится пустым.
+
+### Сохранение задач
+Список задач автоматически сохраняется в `localStorage`, поэтому после перезагрузки страницы данные не пропадают.
+
+### Стартовые задачи
+Если в `localStorage` ещё нет сохранённых данных, приложение загружает стартовый список задач по умолчанию.
+
+---
+
+## Особенности интерфейса
+
+- минималистичный дизайн
+- аккуратная структура приложения
+- hover-эффекты для интерактивных элементов
+- приятный внешний вид без перегруженности
+- простая и понятная логика взаимодействия
+
+---
+
+## Используемые технологии
+
+- **React**
+- **JavaScript**
+- **CSS**
+- **Vite**
+- **localStorage**
+
+---
+
+## Структура проекта
+
+```text
+src/
+├── assets/
+│   └── icons/
+├── components/
+│   ├── AddTaskForm/
+│   ├── Field/
+│   ├── SearchTaskForm/
+│   ├── TodoInfo/
+│   ├── TodoList/
+│   └── TodoTask/
+├── App.jsx
+├── main.jsx
+└── index.css
+```
+---
+## Установка и запуск
+
+Для запуска проекта локально выполните следующие шаги.
+
+### 1. Клонирование репозитория
+
+```bash
+git clone https://github.com/your-username/your-repository-name.git
+```
+
+### 2. Переход в папку проекта
+
+```bash
+cd your-repository-name
+```
+### 3. Установка зависимостей
+```bash
+npm install
+```
+### 4. Запуск проекта
+```bash
+npm run dev
+```
+После запуска в терминале появится локальный адрес, например:
+```bash
+http://localhost:5173
+```
+

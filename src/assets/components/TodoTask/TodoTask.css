@@ -1,15 +1,29 @@
 .list-item {
     display: flex;
     border: 1px solid black;
-    padding: 24px 12px;
+    padding: 6px 12px;
     border-radius: 10px;
     justify-content: space-between;
     align-items: center;
+    font-size: 16px;
 
+    &:hover {
+        background-color: rgb(243, 243, 243);
+    }
 }
+
+input[type="checkbox"] {  
+    accent-color: grey;  
+}  
 
 .delete-task-button {
     border: none;
-    background-color: black;
+    background-color: transparent;
     border-radius: 10px;
+}
+
+.delete-task-img {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
 }

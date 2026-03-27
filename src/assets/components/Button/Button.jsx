@@ -11,7 +11,7 @@ const Button = (props) => {
     return (
         <>
             <button 
-            className=""
+            className={className}
             type={type}
             >
             {title}

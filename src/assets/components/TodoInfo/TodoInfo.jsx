@@ -1,14 +1,22 @@
+import './TodoInfo.css'
+
 const TodoInfo = (props) => {
     const {
         tasks,
         tasksDone,
-        deleteTasks
+        onDeleteButton,
     } = props
+
+    
     return (
-        <>
-            <p>Completed {tasksDone} from {tasks}</p>
-            <p onClick={deleteTasks}>Delete items</p>
-        </>
+        <div className="todo-info">
+            <p>Completed {tasksDone} from {tasks.length}</p>
+            <p
+            className='delete-items'
+            onClick={onDeleteButton} 
+            
+            >Delete items</p>
+        </div>
     )
 }
 

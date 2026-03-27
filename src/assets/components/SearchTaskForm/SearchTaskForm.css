@@ -1,0 +1,28 @@
+.search-task-form {
+    display: flex;
+    position: relative;
+    width: 100%;
+    
+}
+
+.field {
+    padding: 6px 12px;
+    border: 1px solid grey;
+    border-radius: 12px;
+    outline: none;
+    
+    flex: 1;
+    
+}
+
+.field:focus {
+        border: 2px solid black;
+}
+
+.search-task-img {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    top: 5px;
+    right: 8px;
+}
