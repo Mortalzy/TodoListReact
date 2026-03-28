@@ -7,6 +7,8 @@ const TodoList = (props) => {
         filteredTasks,
         onDeleteTaskButton,
         onTaskCompleteChange,
+        firstFailedTaskRef,
+        firstFailedTaskId,
     } = props
 
     if(tasks.length < 1) {
@@ -26,6 +28,7 @@ const TodoList = (props) => {
                 isDone={isDone}
                 onDeleteTaskButton={onDeleteTaskButton}
                 onTaskCompleteChange={onTaskCompleteChange}
+                ref={firstFailedTaskId === id ? firstFailedTaskRef : null}
                 />)
                 
            } )}

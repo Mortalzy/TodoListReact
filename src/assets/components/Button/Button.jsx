@@ -5,14 +5,16 @@ const Button = (props) => {
         className='',
         type,
         title,
+        onClick,
         
     } = props
 
     return (
         <>
             <button 
-            className={className}
+            className={`add-task-button ${className} `}
             type={type}
+            onClick={onClick}
             >
             {title}
             </button>

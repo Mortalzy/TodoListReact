@@ -7,10 +7,11 @@ const TodoTask = (props) => {
         isDone,
         onDeleteTaskButton,
         onTaskCompleteChange,
+        ref,
     } = props
 
     return (
-        <li className="list-item">
+        <li className="list-item" ref={ref}>
             <input
             
             type="checkbox" 

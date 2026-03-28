@@ -4,7 +4,8 @@ const Field = (props) => {
         placeholder,
         className="",
         value,
-        onInput
+        onInput,
+        ref,
     } = props
 
     return (
@@ -15,6 +16,7 @@ const Field = (props) => {
             value={value}
             placeholder={placeholder}
             onInput={onInput}
+            ref={ref}
             />
         </>
     )
