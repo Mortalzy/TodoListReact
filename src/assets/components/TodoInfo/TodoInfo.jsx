@@ -1,19 +1,22 @@
+import { useContext } from 'react'
+import { TasksContext } from '../../context/TasksContext'
 import './TodoInfo.css'
 
-const TodoInfo = (props) => {
+const TodoInfo = () => {
     const {
         tasks,
-        tasksDone,
-        onDeleteButton,
-    } = props
+        deleteAllTasks,
+    } = useContext(TasksContext)
 
-    
+    const total = tasks.length
+    const done = tasks.filter( ({isDone}) => isDone).length
+
     return (
         <div className="todo-info">
-            <p>Completed {tasksDone} from {tasks.length}</p>
+            <p>Completed {done} from {total}</p>
             <p
             className='delete-items'
-            onClick={onDeleteButton} 
+            onClick={deleteAllTasks} 
             
             >Delete items</p>
         </div>

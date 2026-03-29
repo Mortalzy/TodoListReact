@@ -1,36 +1,37 @@
+import { useContext } from 'react'
 import TodoTask from '../TodoTask/TodoTask'
 import './TodoList.css'
+import { TasksContext } from '../../context/TasksContext'
 
-const TodoList = (props) => {
+const TodoList = () => {
     const {
         tasks,
         filteredTasks,
-        onDeleteTaskButton,
-        onTaskCompleteChange,
-        firstFailedTaskRef,
-        firstFailedTaskId,
-    } = props
+    } = useContext(TasksContext)
 
-    if(tasks.length < 1) {
+    const hasTasks = tasks.length > 0
+    const isEmptyFilteredTasks = filteredTasks?.length === 0
+
+    if(!hasTasks) {
         return (
             <div className='todo-list__empty'>There are no tasks</div>
         ) 
     }
 
+     if(hasTasks && isEmptyFilteredTasks) {
+        return (
+            <div className='todo-list__empty'>Task not found</div>
+        ) 
+    }
+
     return (
         <ul className="todo-list">
-           {(filteredTasks ?? tasks).map( ({id, title, isDone}) => {
+           {(filteredTasks ?? tasks).map( (task) => {
             return (
                 <TodoTask
-                key={id}
-                id={id}
-                title={title}
-                isDone={isDone}
-                onDeleteTaskButton={onDeleteTaskButton}
-                onTaskCompleteChange={onTaskCompleteChange}
-                ref={firstFailedTaskId === id ? firstFailedTaskRef : null}
+                key={task.id}
+                {...task}
                 />)
-                
            } )}
         </ul>
     )

@@ -1,11 +1,14 @@
 import './App.css'
 import Todo from "./assets/components/Todo/Todo"
+import { TasksProvider } from './assets/context/TasksContext'
 
 
 const App = () => {
     return (
         <div className="wrapper">
-            <Todo/>
+            <TasksProvider>
+                <Todo/>
+            </TasksProvider>
         </div>
     )
 }

@@ -1,17 +1,25 @@
+import { useContext } from 'react'
 import './TodoTask.css'
+import { TasksContext } from '../../context/TasksContext'
 
 const TodoTask = (props) => {
     const {
         title,
         id,
         isDone,
-        onDeleteTaskButton,
-        onTaskCompleteChange,
-        ref,
     } = props
 
+    const {
+        toggleTaskComplete,
+        deleteTask,
+        firstFailedTaskId,
+        firstFailedTaskRef,
+    } = useContext(TasksContext)
+
     return (
-        <li className="list-item" ref={ref}>
+        <li 
+        className="list-item" 
+        ref={firstFailedTaskId === id ? firstFailedTaskRef : null}>
             <input
             
             type="checkbox" 
@@ -19,13 +27,13 @@ const TodoTask = (props) => {
             id={id}
             readOnly
             onChange={({target}) => {
-                onTaskCompleteChange(id, target.checked)
+                toggleTaskComplete(id, target.checked)
             }}
             />
             <p>{title}</p>
             <button 
             className="delete-task-button"
-            onClick={() => onDeleteTaskButton(id)}
+            onClick={() => deleteTask(id)}
             >
                 <img 
                 className="delete-task-img"
