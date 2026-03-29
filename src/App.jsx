@@ -1,6 +1,6 @@
 import './App.css'
-import Todo from "./assets/components/Todo/Todo"
-import { TasksProvider } from './assets/context/TasksContext'
+import Todo from "./components/Todo/Todo"
+import { TasksProvider } from './context/TasksContext'
 
 
 const App = () => {

@@ -1,29 +1,21 @@
-import { useState, useEffect, useRef, createContext } from "react"
+import { useState, useEffect, useRef,  } from "react"
+import useTasksLocalStorage from "./useTasksLocalStorage"
 
-export const TasksContext = createContext({})
+const useTasks = () => {
+    const {
+        savedTasks,
+        saveTasks,
+    } = useTasksLocalStorage()
 
-export const TasksProvider = (props) => {
-    const {children} = props
-
-    const [tasks, setTasks] = useState( () => {
-        const savedTasks = localStorage.getItem('tasks')
-
-        if(savedTasks) {
-            return JSON.parse(savedTasks)
-        }
-        else {
-            return [{id: 'task-1', title: 'Купить молоко', isDone: false},
-                    {id: 'task-2', title: 'Доделать проект', isDone: true},
-                    {id: 'task-3', title: 'Погулять с собакой', isDone: false}]
-        }
-    }
-        
+    const [tasks, setTasks] = useState( savedTasks ?? 
+        [{id: 'task-1', title: 'Купить молоко', isDone: false},
+        {id: 'task-2', title: 'Доделать проект', isDone: true},
+        {id: 'task-3', title: 'Погулять с собакой', isDone: false}]
     )
+
     const [newTaskTitle, setNewTaskTitle] = useState('')
     const [searchQuery, setSearchQuery] = useState('')
 
-    const firstFailedTaskRef = useRef(null)
-    const firstFailedTaskId = tasks.find( ({isDone}) => !isDone)?.id
     const inputRef = useRef(null)
 
     const addNewTask = () => {
@@ -67,34 +59,26 @@ export const TasksProvider = (props) => {
     : null
     
     useEffect( () => {
-        localStorage.setItem('tasks', JSON.stringify(tasks))
+       saveTasks(tasks)
     }, [tasks])
 
     useEffect( () => {
         inputRef.current.focus()
     }, [])
 
+    return {
+        tasks,
+        filteredTasks,
+        deleteTask,
+        toggleTaskComplete,
+        deleteAllTasks,
+        newTaskTitle,
+        setNewTaskTitle,
+        searchQuery,
+        setSearchQuery,
+        inputRef,
+        addNewTask
+    }
+}
 
-    return (
-        <TasksContext.Provider
-        value={{
-                tasks,
-                filteredTasks,
-                deleteTask,
-                toggleTaskComplete,
-                firstFailedTaskRef,
-                firstFailedTaskId,
-                deleteAllTasks,
-
-                newTaskTitle,
-                setNewTaskTitle,
-                searchQuery,
-                setSearchQuery,
-                inputRef,
-                addNewTask
-        }}
-        >
-            {children}
-        </TasksContext.Provider>
-    )
-} 
+export default useTasks

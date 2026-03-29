@@ -95,13 +95,13 @@ src/
 ### 1. Клонирование репозитория
 
 ```bash
-git clone https://github.com/your-username/your-repository-name.git
+git clone https://github.com/your-username/TodoListReact.git
 ```
 
 ### 2. Переход в папку проекта
 
 ```bash
-cd your-repository-name
+cd TodoListReact
 ```
 ### 3. Установка зависимостей
 ```bash
