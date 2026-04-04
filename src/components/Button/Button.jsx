@@ -5,7 +5,7 @@ const Button = (props) => {
         className='',
         type,
         onClick,
-
+        isDisabled,
         children
         
     } = props
@@ -16,6 +16,7 @@ const Button = (props) => {
             className={`add-task-button ${className} `}
             type={type}
             onClick={onClick}
+            disabled={isDisabled}
             >
             {children}
             </button>

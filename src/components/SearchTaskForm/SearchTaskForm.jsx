@@ -12,7 +12,7 @@ const SearchTaskForm = (props) => {
     return (
         <form className="search-task-form">
             <Field
-            className="field" 
+            className='search-task-input'
             type="text"
             placeholder="Search task"
             value={searchQuery}

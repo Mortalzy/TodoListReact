@@ -2,21 +2,15 @@
     display: flex;
     position: relative;
     width: 100%;
-    
 }
 
-.field {
-    padding: 6px 12px;
-    border: 1px solid grey;
-    border-radius: 12px;
-    outline: none;
-    
+.search-task-form .field {
     flex: 1;
-    
 }
 
-.field:focus {
-        border: 2px solid black;
+.search-task-input {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .search-task-img {

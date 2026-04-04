@@ -18,19 +18,17 @@ const useTasks = () => {
 
     const inputRef = useRef(null)
 
-    const addNewTask = () => {
-        if(newTaskTitle.trim().length > 0) {
-            const newTask = {
-                id: crypto?.randomUUID() ?? new Date().toLocaleDateString(),
-                title: newTaskTitle,
-                isDone: false,
-            }
-
-            setTasks([...tasks, newTask])
-            setNewTaskTitle('')
-            setSearchQuery('')
-            inputRef.current.focus()
+    const addNewTask = (title) => {
+        const newTask = {
+            id: crypto?.randomUUID() ?? new Date().toLocaleDateString(),
+            title,
+            isDone: false,
         }
+
+        setTasks([...tasks, newTask])
+        setNewTaskTitle('')
+        setSearchQuery('')
+        inputRef.current.focus()
     }
 
     const deleteTask = (id) => {

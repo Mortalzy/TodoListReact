@@ -1,24 +1,31 @@
+import './Field.css'
+
 const Field = (props) => {
     const {
         type,
         placeholder,
-        className="",
         value,
+        className='',
         onInput,
         ref,
+        error,
     } = props
 
     return (
-        <>
+        <div className='field'>
             <input
-            className={className}
+            className={`field__input ${error ? 'is-invalid' : ''} ${className} `}
             type={type}
             value={value}
             placeholder={placeholder}
             onInput={onInput}
             ref={ref}
             />
-        </>
+
+            {error && (
+                <span className="field__error">{error}</span>
+            )}
+        </div>
     )
 }
 
