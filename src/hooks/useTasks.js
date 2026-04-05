@@ -1,17 +1,8 @@
 import { useState, useEffect, useRef,  } from "react"
-import useTasksLocalStorage from "./useTasksLocalStorage"
+import tasksAPI from "../api/tasksAPI"
 
 const useTasks = () => {
-    const {
-        savedTasks,
-        saveTasks,
-    } = useTasksLocalStorage()
-
-    const [tasks, setTasks] = useState( savedTasks ?? 
-        [{id: 'task-1', title: 'Купить молоко', isDone: false},
-        {id: 'task-2', title: 'Доделать проект', isDone: true},
-        {id: 'task-3', title: 'Погулять с собакой', isDone: false}]
-    )
+    const [tasks, setTasks] = useState([])
 
     const [newTaskTitle, setNewTaskTitle] = useState('')
     const [searchQuery, setSearchQuery] = useState('')
@@ -20,48 +11,58 @@ const useTasks = () => {
 
     const addNewTask = (title) => {
         const newTask = {
-            id: crypto?.randomUUID() ?? new Date().toLocaleDateString(),
             title,
             isDone: false,
         }
 
-        setTasks([...tasks, newTask])
-        setNewTaskTitle('')
-        setSearchQuery('')
-        inputRef.current.focus()
+        tasksAPI.add(newTask)
+        .then((addedTask) => {
+            setTasks([...tasks, addedTask])
+            setNewTaskTitle('')
+            setSearchQuery('')
+            inputRef.current.focus()
+        })
     }
 
     const deleteTask = (id) => {
-        setTasks(tasks.filter((task) => id !== task.id))
+        tasksAPI.delete(id)
+        .then(()=> {
+            setTasks(tasks.filter((task) => id !== task.id))
+        })
     }
 
     const deleteAllTasks = () => {
         const isConfirmed = confirm('Are you sure to delete all tasks?')
-        if(isConfirmed) setTasks([])
-    }
-
+        if(isConfirmed) {
+            tasksAPI.deleteALL(tasks)
+            .then(() => setTasks([]))
+        }    
+}
+        
+    
     const toggleTaskComplete = (id, isDone) => {
-        setTasks(
+        tasksAPI.toggleComplete(id, isDone)
+        .then(() => {
+            setTasks(
             tasks.map((task) => {
                 if(task.id === id) {
                     return {...task, isDone}
                 }
                 return task
             })
-        )
+            )
+        })
     }
 
     const clearSearchQuery = searchQuery.trim().toLowerCase()
     const filteredTasks = clearSearchQuery.length > 0 
     ? tasks.filter( ({title}) => title.toLowerCase().includes(clearSearchQuery))
     : null
-    
-    useEffect( () => {
-       saveTasks(tasks)
-    }, [tasks])
 
     useEffect( () => {
         inputRef.current.focus()
+
+        tasksAPI.getAll().then(setTasks)
     }, [])
 
     return {

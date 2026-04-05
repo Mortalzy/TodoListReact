@@ -27,3 +27,8 @@ input[type="checkbox"] {
     height: 16px;
     cursor: pointer;
 }
+
+.is-done {
+    color: gray;
+    text-decoration: line-through;
+}

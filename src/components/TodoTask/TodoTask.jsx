@@ -30,7 +30,9 @@ const TodoTask = (props) => {
                 toggleTaskComplete(id, target.checked)
             }}
             />
-            <p>{title}</p>
+            <p className={isDone ? 'is-done' : ''}>
+                {title}
+            </p>
             <button 
             className="delete-task-button"
             onClick={() => deleteTask(id)}
